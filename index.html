@@ -468,52 +468,35 @@ async function sendMessage(){
   var typingEl=addTyping();
 
   try{
-    var res=await fetch('/api/chat',{
+    var response=await fetch('/api/chat',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({messages:history})
     });
 
+    var data=await response.json();
     typingEl.remove();
+
+    var fullText=data.text||data.error||'Teddy could not respond. Try again.';
+    history.push({role:'assistant',content:fullText});
+
     var bubble=addTeddyMsg(agent?agent.label:null);
-    var fullText='';
-    bubble.innerHTML='<span class="cursor"></span>';
+    bubble.textContent='';
 
-    var reader=res.body.getReader();
-    var decoder=new TextDecoder();
-    var buf='';
-
-    while(true){
-      var chunk=await reader.read();
-      if(chunk.done)break;
-      buf+=decoder.decode(chunk.value,{stream:true});
-      var lines=buf.split('\n');
-      buf=lines.pop();
-      for(var i=0;i<lines.length;i++){
-        var line=lines[i].trim();
-        if(!line.startsWith('data:'))continue;
-        var data=line.slice(5).trim();
-        if(data==='[DONE]')break;
-        try{
-          var parsed=JSON.parse(data);
-          if(parsed.text){
-            fullText+=parsed.text;
-            bubble.textContent=fullText;
-            var cur=document.createElement('span');
-            cur.className='cursor';
-            bubble.appendChild(cur);
-            scrollEnd();
-          }
-          if(parsed.error){fullText=parsed.error;bubble.textContent=fullText;}
-        }catch(e){}
+    // typewriter effect
+    var i=0;
+    function typeChar(){
+      if(i<fullText.length){
+        bubble.textContent+=fullText[i];
+        i++;
+        scrollEnd();
+        setTimeout(typeChar, i<fullText.length?8:0);
+      } else {
+        document.getElementById('streaming-time').textContent=getTime();
+        if(agent)setTimeout(function(){doneAgent(agent.id);},1500);
       }
     }
-
-    // finalise
-    bubble.textContent=fullText;
-    document.getElementById('streaming-time').textContent=getTime();
-    history.push({role:'assistant',content:fullText});
-    if(agent)setTimeout(function(){doneAgent(agent.id);},1500);
+    typeChar();
 
   }catch(err){
     typingEl.remove();

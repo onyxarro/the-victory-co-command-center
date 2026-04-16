@@ -110,7 +110,7 @@ app.post('/api/auth', (req, res) => {
   }
 });
 
-/* ── CHAT ENDPOINT (SSE STREAMING) ── */
+/* ── CHAT ENDPOINT ── */
 app.post('/api/chat', async (req, res) => {
   const { messages } = req.body;
 
@@ -118,32 +118,19 @@ app.post('/api/chat', async (req, res) => {
     return res.status(400).json({ error: 'Invalid messages' });
   }
 
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.setHeader('Cache-Control', 'no-cache');
-  res.setHeader('Connection', 'keep-alive');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-
   try {
-    const stream = client.messages.stream({
+    const response = await client.messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 1024,
       system: TEDDY_SYSTEM,
       messages: messages.map(m => ({ role: m.role, content: m.content })),
     });
 
-    for await (const chunk of stream) {
-      if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
-        res.write(`data: ${JSON.stringify({ text: chunk.delta.text })}\n\n`);
-      }
-    }
-
-    res.write('data: [DONE]\n\n');
-    res.end();
+    const text = response.content[0]?.text || 'No response from Teddy.';
+    res.json({ text });
   } catch (err) {
     console.error('Claude API error:', err.message);
-    res.write(`data: ${JSON.stringify({ error: 'Teddy encountered an error. Check your API key.' })}\n\n`);
-    res.write('data: [DONE]\n\n');
-    res.end();
+    res.status(500).json({ error: 'Teddy encountered an error: ' + err.message });
   }
 });
 
