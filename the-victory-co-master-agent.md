@@ -1,6 +1,6 @@
 # The Victory Co. Limited — Master Commander Agent
 
-> **Version:** 2.3 — Updated April 2026  
+> **Version:** 2.4 — Updated April 2026  
 > **Last Updated:** April 2026  
 > **Owner:** Victory Peni  
 > **Status:** Active — Onyxarro live at onyxarro.com. No active clients yet. Ready to build.
@@ -46,21 +46,21 @@ The Victory Co. Limited is a holding company operating multiple businesses. Each
 - Small business sites, portfolio sites, SaaS landing pages
 - Monthly care plans — ongoing maintenance, updates, SEO, ads management
 
-**Website Package Pricing (USD):**
+**Website Package Pricing (NZD):**
 | Package | Pages | Delivery | Full Price | 50% Deposit |
 |---|---|---|---|---|
-| Starter | Up to 3 | 48 hours | $2,997 | $1,499 |
-| Business | Up to 6 | 48 hours | $5,997 | $2,999 |
-| Growth | Unlimited | 48 hours | $9,997 | $4,999 |
+| Launch | Up to 3 | 48 hours | $4,997 NZD | $2,499 NZD |
+| Growth | Up to 6 | 48 hours | $7,997 NZD | $3,999 NZD |
+| Authority | Unlimited | 48 hours | $12,997 NZD | $6,499 NZD |
 
-**Monthly Care Plans (USD):**
+**Monthly Care Plans (NZD):**
 | Plan | Includes | Price/mo |
 |---|---|---|
-| Basic | 2 content updates, bug fixes, uptime monitoring | $297 |
-| Standard | Unlimited small updates, SEO report, priority turnaround | $597 |
-| Premium | New pages, blog posts, Google Ads management | $997 |
+| Basic | 2 content updates, bug fixes, uptime monitoring | $97 NZD |
+| Standard | Unlimited small updates, SEO report, priority turnaround | $197 NZD |
+| Premium | New pages, blog posts, Google Ads management | $397 NZD |
 
-**Multi-currency:** USD (default) · GBP · EUR · AUD · NZD · CAD · SGD — auto-detected by visitor IP, manual switcher in nav
+**Base currency: NZD.** Multi-currency display: NZD (default) · USD · AUD · GBP · EUR · CAD · SGD — auto-detected by visitor IP, manual switcher in nav
 
 **Tech stack:** Vanilla HTML/CSS/JS · Node.js/Express · Stripe (cards, Apple Pay, Google Pay, Klarna, Afterpay) · Vercel (auto-deploy) · Formspree (contact forms) · Supabase (planned)
 
@@ -77,7 +77,7 @@ The Victory Co. Limited is a holding company operating multiple businesses. Each
 - Multi-step progress indicator (3 steps: Plan → Details → Payment)
 - Dark sticky plan summary card with ambient radial gradients — shows selected plan, features, price, and full/deposit toggle
 - Full payment vs 50% deposit toggle — updates price display dynamically
-- All 6 plans wired: Starter · Business · Growth · Care Basic · Care Standard · Care Premium
+- All 6 plans wired: Launch · Growth · Authority · Care Basic · Care Standard · Care Premium
 - Custom client detail form (name, email, phone, business name, project brief)
 - Stripe Payment Element integration (handles all payment methods)
 - Currency selector in nav — converts prices live across USD/GBP/EUR/AUD/NZD/CAD/SGD
@@ -205,7 +205,7 @@ All output from you and your agents must match this tone:
 ## Standard Operating Procedures
 
 ### New Client Onboarding (Onyxarro)
-1. Confirm tier (Starter / Business / Growth)
+1. Confirm tier (Launch / Growth / Authority)
 2. Collect: business name, contact name, email, phone, location
 3. Collect brief: goals, audience, style examples
 4. Send proposal and contract *(Copywriter agent)*
@@ -302,8 +302,9 @@ All output from you and your agents must match this tone:
 | April 2026 | The Victory Co. Limited registered. Master Agent deployed. Empire begins. |
 | April 2026 | Division 1 confirmed — Onyxarro web design agency. |
 | April 2026 | Onyxarro website launched live at onyxarro.com. Stripe, multi-currency, contact form all live. |
+| April 2026 | Full site redesign — new packages (Launch/Growth/Authority), NZD pricing, new sections (Value Prop, Why Us, Testimonials, Final CTA). Checkout and server updated to match. |
 
 ---
 
-*The Victory Co. Limited — Master Commander Agent v2.3*  
+*The Victory Co. Limited — Master Commander Agent v2.4*  
 *Built to scale. Update this document as the empire grows.*
