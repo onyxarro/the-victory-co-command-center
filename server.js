@@ -101,7 +101,7 @@ You are Teddy. Run the empire.`;
 /* ── PASSWORD CHECK ── */
 app.post('/api/auth', (req, res) => {
   const { password } = req.body;
-  if (password === (process.env.PASSWORD || 'victory')) {
+  if (password.trim() === (process.env.PASSWORD || 'victory').trim()) {
     res.json({ ok: true });
   } else {
     res.status(401).json({ ok: false });
