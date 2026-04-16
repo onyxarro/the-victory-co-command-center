@@ -437,14 +437,56 @@ function addTyping(){
   scrollEnd();return el;
 }
 
-function addTeddyMsg(agentLabel){
-  var tag=agentLabel?'<div class="agent-tag">▲ '+agentLabel+'</div>':'';
+function addTeddyMsg(agentLabel, fullText){
   var el=document.createElement('div');
   el.className='msg teddy';
-  el.innerHTML='<div class="msg-avatar">T</div><div class="msg-body"><div class="msg-name">Teddy</div>'+tag+'<div class="msg-bubble" id="streaming-bubble"><span class="cursor"></span></div><div class="msg-time" id="streaming-time"></div></div>';
+
+  var avatar=document.createElement('div');
+  avatar.className='msg-avatar';
+  avatar.textContent='T';
+
+  var body=document.createElement('div');
+  body.className='msg-body';
+
+  var nameEl=document.createElement('div');
+  nameEl.className='msg-name';
+  nameEl.textContent='Teddy';
+  body.appendChild(nameEl);
+
+  if(agentLabel){
+    var tag=document.createElement('div');
+    tag.className='agent-tag';
+    tag.textContent='▲ '+agentLabel;
+    body.appendChild(tag);
+  }
+
+  var bubble=document.createElement('div');
+  bubble.className='msg-bubble';
+  body.appendChild(bubble);
+
+  var timeEl=document.createElement('div');
+  timeEl.className='msg-time';
+  body.appendChild(timeEl);
+
+  el.appendChild(avatar);
+  el.appendChild(body);
   document.getElementById('messages').appendChild(el);
   scrollEnd();
-  return document.getElementById('streaming-bubble');
+
+  // typewriter
+  var i=0;
+  function typeChar(){
+    if(i<fullText.length){
+      bubble.textContent+=fullText[i];
+      i++;
+      scrollEnd();
+      setTimeout(typeChar,8);
+    } else {
+      timeEl.textContent=getTime();
+    }
+  }
+  typeChar();
+  return bubble;
 }
 
 /* ── SEND ── */
@@ -480,29 +522,12 @@ async function sendMessage(){
     var fullText=data.text||data.error||'Teddy could not respond. Try again.';
     history.push({role:'assistant',content:fullText});
 
-    var bubble=addTeddyMsg(agent?agent.label:null);
-    bubble.textContent='';
-
-    // typewriter effect
-    var i=0;
-    function typeChar(){
-      if(i<fullText.length){
-        bubble.textContent+=fullText[i];
-        i++;
-        scrollEnd();
-        setTimeout(typeChar, i<fullText.length?8:0);
-      } else {
-        document.getElementById('streaming-time').textContent=getTime();
-        if(agent)setTimeout(function(){doneAgent(agent.id);},1500);
-      }
-    }
-    typeChar();
+    addTeddyMsg(agent?agent.label:null, fullText);
+    if(agent)setTimeout(function(){doneAgent(agent.id);},1500);
 
   }catch(err){
     typingEl.remove();
-    var b=addTeddyMsg(null);
-    b.textContent='Could not reach the server. Make sure it\'s running with: node server.js';
-    document.getElementById('streaming-time').textContent=getTime();
+    addTeddyMsg(null,'Error: '+err.message+'. Check the server is running.');
   }
 
   busy=false;
