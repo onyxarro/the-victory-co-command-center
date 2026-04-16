@@ -7,6 +7,10 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 /* ── TEDDY SYSTEM PROMPT ── */
