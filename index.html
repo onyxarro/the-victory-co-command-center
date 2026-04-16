@@ -31,45 +31,24 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 @keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes typing{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(14,165,233,0)}50%{box-shadow:0 0 20px 3px rgba(14,165,233,.15)}}
+@keyframes slideInRight{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@keyframes slideInUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 
 /* ── PASSWORD GATE ── */
-.gate{
-  position:fixed;inset:0;background:var(--bg);
-  display:flex;align-items:center;justify-content:center;
-  z-index:999;padding:1.5rem;
-}
-.gate-card{
-  background:var(--surface);border:1px solid var(--border2);
-  border-radius:20px;padding:2.5rem;width:100%;max-width:360px;
-  display:flex;flex-direction:column;align-items:center;gap:1.25rem;
-  animation:fadeUp .5s ease both;
-}
+.gate{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:999;padding:1.5rem;}
+.gate-card{background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:2.5rem;width:100%;max-width:360px;display:flex;flex-direction:column;align-items:center;gap:1.25rem;animation:fadeUp .5s ease both;}
 .gate-icon{width:56px;height:56px;border-radius:16px;background:var(--grad-135);display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:800;color:#fff;letter-spacing:1px}
 .gate-title{font-size:1.1rem;font-weight:800;letter-spacing:-.5px}
 .gate-sub{font-size:.78rem;color:var(--text-muted);text-align:center}
-.gate-input{
-  width:100%;background:var(--surface2);border:1.5px solid var(--border2);
-  border-radius:12px;padding:.75rem 1rem;font-size:.9rem;color:#fff;
-  font-family:var(--font);outline:none;text-align:center;letter-spacing:2px;
-  transition:border-color .2s;
-}
+.gate-input{width:100%;background:var(--surface2);border:1.5px solid var(--border2);border-radius:12px;padding:.75rem 1rem;font-size:.9rem;color:#fff;font-family:var(--font);outline:none;text-align:center;letter-spacing:2px;transition:border-color .2s;}
 .gate-input:focus{border-color:rgba(14,165,233,.5)}
-.gate-btn{
-  width:100%;padding:.85rem;border:none;border-radius:12px;
-  background:var(--grad-135);color:#fff;font-size:.9rem;font-weight:700;
-  cursor:pointer;font-family:var(--font);transition:opacity .2s,transform .2s;
-}
+.gate-btn{width:100%;padding:.85rem;border:none;border-radius:12px;background:var(--grad-135);color:#fff;font-size:.9rem;font-weight:700;cursor:pointer;font-family:var(--font);transition:opacity .2s,transform .2s;}
 .gate-btn:hover{opacity:.9;transform:translateY(-1px)}
 .gate-error{font-size:.75rem;color:#f87171;display:none}
 .gate.hidden{display:none}
 
 /* ── HEADER ── */
-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:.85rem 1.5rem;background:var(--surface);
-  border-bottom:1px solid var(--border);flex-shrink:0;
-  position:relative;z-index:10;
-}
+header{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.5rem;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;position:relative;z-index:10;}
 header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--grad);opacity:.25;}
 .header-left{display:flex;align-items:center;gap:1rem}
 .logo-wordmark{font-size:15px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;line-height:1}
@@ -80,11 +59,7 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
 .header-right{display:flex;align-items:center;gap:.75rem}
 .status-pill{display:flex;align-items:center;gap:6px;padding:.28rem .75rem;border-radius:20px;background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.2);font-size:.65rem;font-weight:700;color:var(--teal)}
 .status-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
-.panel-toggle{
-  display:none;width:34px;height:34px;border-radius:9px;border:1px solid var(--border2);
-  background:var(--surface2);cursor:pointer;align-items:center;justify-content:center;
-  color:var(--text-muted);font-size:1rem;transition:all .2s;
-}
+.panel-toggle{display:none;width:34px;height:34px;border-radius:9px;border:1px solid var(--border2);background:var(--surface2);cursor:pointer;align-items:center;justify-content:center;color:var(--text-muted);font-size:1rem;transition:all .2s;}
 .panel-toggle:hover{background:var(--surface3);color:#fff}
 .header-time{font-size:.62rem;color:var(--text-muted)}
 
@@ -122,19 +97,29 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
 .msg-time{font-size:.58rem;color:var(--text-dim)}
 .agent-tag{display:inline-flex;align-items:center;gap:4px;padding:.18rem .55rem;border-radius:6px;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.2);font-size:.58rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--teal);margin-bottom:.3rem;align-self:flex-start}
 
+.msg-img{max-width:200px;border-radius:8px;margin-bottom:.35rem;border:1px solid var(--border2)}
+
 .typing-bubble{display:flex;align-items:center;gap:4px;padding:.6rem .85rem;background:var(--surface2);border:1px solid var(--border);border-radius:14px;border-top-left-radius:4px;width:fit-content}
 .tdot{width:5px;height:5px;border-radius:50%;background:var(--text-muted);animation:typing 1.2s ease infinite}
 .tdot:nth-child(2){animation-delay:.15s}
 .tdot:nth-child(3){animation-delay:.3s}
-
-/* streaming cursor */
 .cursor{display:inline-block;width:2px;height:14px;background:var(--teal);border-radius:1px;margin-left:2px;animation:pulse .7s ease-in-out infinite;vertical-align:middle}
 
-.chat-input-area{padding:.9rem 1.1rem;background:var(--surface);border-top:1px solid var(--border);flex-shrink:0;position:relative;z-index:1;padding-bottom:max(.9rem, env(safe-area-inset-bottom))}
+/* ── INPUT AREA ── */
+.chat-input-area{padding:.9rem 1.1rem;background:var(--surface);border-top:1px solid var(--border);flex-shrink:0;position:relative;z-index:1;padding-bottom:max(.9rem,env(safe-area-inset-bottom))}
+.file-preview-bar{display:flex;gap:.4rem;flex-wrap:wrap;padding:0 0 .5rem 0}
+.file-preview-bar:empty{display:none}
+.file-chip{display:flex;align-items:center;gap:.35rem;padding:.22rem .55rem;border-radius:8px;background:var(--surface3);border:1px solid var(--border2);font-size:.65rem;color:var(--text-muted)}
+.file-chip-img{width:20px;height:20px;border-radius:4px;object-fit:cover}
+.file-chip-remove{cursor:pointer;color:var(--text-dim);font-size:.75rem;line-height:1;margin-left:2px;transition:color .15s}
+.file-chip-remove:hover{color:#f87171}
 .input-wrap{display:flex;gap:.6rem;align-items:flex-end}
 .input-box{flex:1;background:var(--surface2);border:1.5px solid var(--border2);border-radius:12px;padding:.65rem .9rem;font-size:.88rem;color:#fff;font-family:var(--font);outline:none;resize:none;min-height:42px;max-height:110px;line-height:1.5;transition:border-color .2s}
 .input-box::placeholder{color:var(--text-muted)}
 .input-box:focus{border-color:rgba(14,165,233,.45)}
+.attach-btn{width:42px;height:42px;border-radius:11px;border:1.5px solid var(--border2);background:var(--surface2);color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.attach-btn:hover{background:var(--surface3);color:#fff;border-color:rgba(14,165,233,.3)}
+.attach-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .send-btn{width:42px;height:42px;border-radius:11px;border:none;background:var(--grad-135);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s,transform .2s;flex-shrink:0}
 .send-btn:hover{opacity:.9;transform:translateY(-1px)}
 .send-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
@@ -143,15 +128,19 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
 
 /* ── AGENT PANEL ── */
 .agent-panel{background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:transform .3s}
-.panel-header{padding:.9rem 1.1rem .7rem;border-bottom:1px solid var(--border);flex-shrink:0}
-.panel-title{font-size:.6rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}
-.panel-subtitle{font-size:.75rem;font-weight:600;color:#fff;margin-top:2px}
 
+/* ── PANEL TABS ── */
+.panel-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0}
+.panel-tab{flex:1;padding:.55rem .5rem;font-size:.6rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);cursor:pointer;text-align:center;border-bottom:2px solid transparent;transition:all .2s}
+.panel-tab.active{color:var(--teal);border-bottom-color:var(--teal)}
+
+/* ── AGENTS TAB ── */
+.agents-tab-body{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0}
 .agents-list{flex:1;overflow-y:auto;padding:.6rem;display:flex;flex-direction:column;gap:.4rem}
 .agents-list::-webkit-scrollbar{width:3px}
 .agents-list::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
-
-.agent-card{padding:.65rem .9rem;border-radius:11px;background:var(--surface2);border:1.5px solid var(--border);display:flex;align-items:center;gap:.65rem;transition:border-color .3s,background .3s,box-shadow .3s}
+.agent-card{padding:.65rem .9rem;border-radius:11px;background:var(--surface2);border:1.5px solid var(--border);display:flex;align-items:center;gap:.65rem;transition:border-color .3s,background .3s,box-shadow .3s;cursor:pointer}
+.agent-card:hover{background:var(--surface3);border-color:var(--border2)}
 .agent-card.active{border-color:rgba(14,165,233,.4);background:rgba(14,165,233,.06);animation:glow 2s ease-in-out infinite}
 .agent-card.done{border-color:rgba(14,165,233,.2)}
 .agent-icon{width:30px;height:30px;border-radius:8px;background:var(--surface3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;transition:background .3s}
@@ -165,7 +154,6 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
 .agent-card.done .agent-ind{background:rgba(14,165,233,.35)}
 
 .panel-divider{height:1px;background:var(--border);margin:.2rem .6rem}
-
 .project-section{padding:.6rem;flex-shrink:0}
 .project-label{font-size:.58rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:.5rem;padding:0 .2rem}
 .project-card{padding:.65rem .85rem;border-radius:10px;background:var(--surface2);border:1px solid var(--border)}
@@ -178,11 +166,55 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
 .panel-footer p{font-size:.58rem;color:var(--text-dim);text-align:center;line-height:1.5}
 .panel-footer span{color:rgba(14,165,233,.45)}
 
+/* ── EMPIRE TAB ── */
+.empire-tab-body{flex:1;overflow-y:auto;padding:.6rem;display:flex;flex-direction:column;gap:.5rem;display:none}
+.empire-stat{padding:.75rem .9rem;border-radius:11px;background:var(--surface2);border:1.5px solid var(--border)}
+.empire-stat.highlight{border-color:rgba(14,165,233,.3);background:rgba(14,165,233,.05)}
+.empire-stat-label{font-size:.57rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}
+.empire-stat-value{font-size:1.5rem;font-weight:800;letter-spacing:-1.5px;color:#fff;margin-top:.2rem;line-height:1}
+.empire-stat.highlight .empire-stat-value{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.empire-stat-sub{font-size:.62rem;color:var(--text-muted);margin-top:3px}
+.empire-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.empire-mini{padding:.6rem .75rem;border-radius:10px;background:var(--surface2);border:1px solid var(--border)}
+.empire-mini-label{font-size:.55rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted)}
+.empire-mini-value{font-size:1.1rem;font-weight:800;color:#fff;margin-top:.15rem;letter-spacing:-.5px}
+.empire-brand-row{display:flex;align-items:center;gap:.6rem;padding:.6rem .75rem;border-radius:10px;background:var(--surface2);border:1px solid rgba(14,165,233,.2)}
+.empire-brand-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.empire-brand-info{flex:1;min-width:0}
+.empire-brand-name{font-size:.73rem;font-weight:700;color:#fff}
+.empire-brand-url{font-size:.6rem;color:var(--teal);margin-top:1px}
+.empire-brand-status{font-size:.6rem;font-weight:700;color:var(--teal);background:rgba(14,165,233,.1);border-radius:6px;padding:.15rem .45rem;flex-shrink:0}
+
+/* ── AGENT DETAIL MODAL ── */
+.agent-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:stretch;justify-content:flex-end;opacity:0;pointer-events:none;transition:opacity .25s}
+.agent-modal-overlay.open{opacity:1;pointer-events:all}
+.agent-modal{background:var(--surface);width:380px;display:flex;flex-direction:column;border-left:1px solid var(--border2);transform:translateX(100%);transition:transform .3s cubic-bezier(0.16,1,0.3,1)}
+.agent-modal-overlay.open .agent-modal{transform:translateX(0)}
+.agent-modal-header{padding:1.1rem 1.1rem .85rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+.agent-modal-icon{width:40px;height:40px;border-radius:11px;background:var(--surface3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0}
+.agent-modal-name{font-size:.88rem;font-weight:800;color:#fff}
+.agent-modal-role{font-size:.62rem;color:var(--text-muted);margin-top:2px;line-height:1.4}
+.agent-modal-close{margin-left:auto;width:28px;height:28px;border-radius:7px;border:1px solid var(--border2);background:var(--surface2);color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:all .2s;flex-shrink:0}
+.agent-modal-close:hover{background:var(--surface3);color:#fff}
+.agent-modal-status-bar{padding:.6rem 1.1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.agent-modal-status-ind{width:7px;height:7px;border-radius:50%;background:var(--border2);flex-shrink:0}
+.agent-modal-status-ind.active{background:var(--teal);animation:pulse 1.5s infinite}
+.agent-modal-status-label{font-size:.65rem;font-weight:700;color:var(--text-muted)}
+.agent-modal-body{flex:1;overflow-y:auto;padding:.85rem 1.1rem;display:flex;flex-direction:column;gap:.6rem}
+.agent-modal-body::-webkit-scrollbar{width:3px}
+.agent-modal-body::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.task-section-label{font-size:.57rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:.1rem}
+.task-entry{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.7rem .85rem;transition:border-color .2s}
+.task-entry:hover{border-color:var(--border2)}
+.task-entry-user{font-size:.72rem;font-weight:600;color:var(--teal);margin-bottom:.3rem;line-height:1.4}
+.task-entry-response{font-size:.71rem;color:rgba(255,255,255,.55);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.task-entry-time{font-size:.58rem;color:var(--text-dim);margin-top:.35rem}
+.task-empty{font-size:.78rem;color:var(--text-muted);text-align:center;padding:2rem 1rem;line-height:1.7}
+.task-empty strong{display:block;color:rgba(255,255,255,.3);font-size:1.5rem;margin-bottom:.5rem}
+
 /* ── MOBILE ── */
 @media(max-width:700px){
   html,body{height:100%;height:100dvh}
-
-  /* header */
   header{padding:.65rem 1rem}
   .header-time{display:none}
   .header-divider{display:none}
@@ -190,61 +222,32 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
   .logo-wordmark{font-size:13px}
   .status-pill{font-size:.6rem;padding:.22rem .6rem}
   .panel-toggle{display:flex;width:38px;height:38px}
-
-  /* layout */
   .main{grid-template-columns:1fr}
-
-  /* chips bar — horizontal scroll, always visible */
   .welcome{display:none!important}
-  .mobile-chips{
-    display:flex;gap:.4rem;padding:.6rem 1rem;
-    overflow-x:auto;flex-shrink:0;
-    border-bottom:1px solid var(--border);
-    scrollbar-width:none;-webkit-overflow-scrolling:touch;
-  }
+  .mobile-chips{display:flex;gap:.4rem;padding:.6rem 1rem;overflow-x:auto;flex-shrink:0;border-bottom:1px solid var(--border);scrollbar-width:none;-webkit-overflow-scrolling:touch;}
   .mobile-chips::-webkit-scrollbar{display:none}
   .mobile-chips .chip{white-space:nowrap;font-size:.68rem;padding:.3rem .75rem;flex-shrink:0}
-
-  /* messages */
   .messages{padding:.9rem .9rem;gap:.75rem}
   .msg-bubble{font-size:.88rem;padding:.65rem .85rem}
   .msg-avatar{width:28px;height:28px;font-size:.65rem}
   .msg-body{max-width:82%}
-
-  /* input */
-  .chat-input-area{
-    padding:.7rem .9rem;
-    padding-bottom:max(.7rem,env(safe-area-inset-bottom));
-  }
-  .input-box{font-size:16px;padding:.6rem .85rem;min-height:44px} /* 16px stops iOS zoom */
+  .chat-input-area{padding:.7rem .9rem;padding-bottom:max(.7rem,env(safe-area-inset-bottom));}
+  .input-box{font-size:16px;padding:.6rem .85rem;min-height:44px}
   .send-btn{width:44px;height:44px;border-radius:12px}
+  .attach-btn{width:44px;height:44px;border-radius:12px}
   .input-hint{display:none}
-
-  /* agent panel — bottom sheet */
-  .agent-panel{
-    position:fixed;left:0;right:0;bottom:0;
-    height:75vh;border-radius:20px 20px 0 0;
-    border-left:none;border-top:1px solid var(--border2);
-    z-index:50;transform:translateY(100%);
-    transition:transform .3s cubic-bezier(0.16,1,0.3,1);
-  }
+  .agent-panel{position:fixed;left:0;right:0;bottom:0;height:80vh;border-radius:20px 20px 0 0;border-left:none;border-top:1px solid var(--border2);z-index:50;transform:translateY(100%);transition:transform .3s cubic-bezier(0.16,1,0.3,1);}
   .agent-panel.open{transform:translateY(0)}
-  .panel-handle{
-    display:flex;justify-content:center;padding:.7rem 0 .3rem;flex-shrink:0;cursor:pointer;
-  }
-  .panel-handle::after{
-    content:'';width:36px;height:4px;border-radius:2px;background:var(--border2);
-  }
-  .panel-overlay{
-    display:none;position:fixed;inset:0;
-    background:rgba(0,0,0,.6);z-index:49;
-  }
+  .panel-handle{display:flex;justify-content:center;padding:.7rem 0 .3rem;flex-shrink:0;cursor:pointer;}
+  .panel-handle::after{content:'';width:36px;height:4px;border-radius:2px;background:var(--border2);}
+  .panel-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:49;}
   .panel-overlay.open{display:block}
-
-  /* typing dots bigger */
   .tdot{width:7px;height:7px}
+  .agent-modal{width:100%;border-left:none;border-top:1px solid var(--border2);border-radius:20px 20px 0 0}
+  .agent-modal-overlay{align-items:flex-end;justify-content:stretch}
+  .agent-modal-overlay.open .agent-modal{transform:translateY(0)}
+  .agent-modal{transform:translateY(100%)}
 }
-
 @media(min-width:701px){
   .panel-overlay{display:none!important}
   .mobile-chips{display:none}
@@ -266,8 +269,32 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
   </div>
 </div>
 
+<!-- AGENT DETAIL MODAL -->
+<div class="agent-modal-overlay" id="agent-modal-overlay" onclick="closeAgentDetail(event)">
+  <div class="agent-modal" id="agent-modal">
+    <div class="agent-modal-header">
+      <div class="agent-modal-icon" id="amd-icon">🏗️</div>
+      <div>
+        <div class="agent-modal-name" id="amd-name">Website Builder</div>
+        <div class="agent-modal-role" id="amd-role">Builds complete websites from a client brief</div>
+      </div>
+      <button class="agent-modal-close" onclick="closeAgentDetail()">✕</button>
+    </div>
+    <div class="agent-modal-status-bar">
+      <div class="agent-modal-status-ind" id="amd-ind"></div>
+      <div class="agent-modal-status-label" id="amd-status">Standby</div>
+    </div>
+    <div class="agent-modal-body" id="amd-body">
+      <div class="task-empty"><strong>💤</strong>No tasks yet.<br>Send Teddy a message that involves this agent and the task log will appear here.</div>
+    </div>
+  </div>
+</div>
+
 <!-- PANEL OVERLAY (mobile) -->
 <div class="panel-overlay" id="panel-overlay" onclick="togglePanel()"></div>
+
+<!-- FILE INPUT (hidden) -->
+<input type="file" id="file-input" multiple accept="image/*,.pdf,.txt,.csv,.md" style="display:none" onchange="handleFiles(this.files)"/>
 
 <!-- HEADER -->
 <header>
@@ -318,77 +345,118 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
       </div>
     </div>
     <div class="chat-input-area">
+      <div class="file-preview-bar" id="file-preview-bar"></div>
       <div class="input-wrap">
+        <button class="attach-btn" onclick="document.getElementById('file-input').click()" title="Attach file or image">
+          <svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+        </button>
         <textarea class="input-box" id="input" placeholder="Tell Teddy what needs doing…" rows="1"
           onkeydown="handleKey(event)" oninput="autoGrow(this)"></textarea>
         <button class="send-btn" id="send-btn" onclick="sendMessage()">
           <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
       </div>
-      <div class="input-hint">Enter to send · Shift+Enter for new line</div>
+      <div class="input-hint">Enter to send · Shift+Enter for new line · Attach images or files with the clip</div>
     </div>
   </div>
 
   <!-- AGENTS -->
   <div class="agent-panel" id="agent-panel">
     <div class="panel-handle" onclick="togglePanel()"></div>
-    <div class="panel-header">
-      <div class="panel-title">Sub-Agent Team</div>
-      <div class="panel-subtitle">8 Agents Ready</div>
+
+    <!-- TABS -->
+    <div class="panel-tabs">
+      <div class="panel-tab active" id="tab-agents" onclick="switchTab('agents')">Agents</div>
+      <div class="panel-tab" id="tab-empire" onclick="switchTab('empire')">Empire</div>
     </div>
-    <div class="agents-list">
-      <div class="agent-card" id="ac-website-builder">
-        <div class="agent-icon">🏗️</div>
-        <div class="agent-info"><div class="agent-name">Website Builder</div><div class="agent-status-text">Standby</div></div>
-        <div class="agent-ind"></div>
+
+    <!-- AGENTS TAB -->
+    <div class="agents-tab-body" id="agents-tab-body">
+      <div class="agents-list">
+        <div class="agent-card" id="ac-website-builder" onclick="openAgentDetail('website-builder')">
+          <div class="agent-icon">🏗️</div>
+          <div class="agent-info"><div class="agent-name">Website Builder</div><div class="agent-status-text">Standby — tap to view</div></div>
+          <div class="agent-ind"></div>
+        </div>
+        <div class="agent-card" id="ac-client-manager" onclick="openAgentDetail('client-manager')">
+          <div class="agent-icon">👤</div>
+          <div class="agent-info"><div class="agent-name">Client Manager</div><div class="agent-status-text">Standby — tap to view</div></div>
+          <div class="agent-ind"></div>
+        </div>
+        <div class="agent-card" id="ac-invoice-agent" onclick="openAgentDetail('invoice-agent')">
+          <div class="agent-icon">💳</div>
+          <div class="agent-info"><div class="agent-name">Invoice Agent</div><div class="agent-status-text">Standby — tap to view</div></div>
+          <div class="agent-ind"></div>
+        </div>
+        <div class="agent-card" id="ac-copywriter" onclick="openAgentDetail('copywriter')">
+          <div class="agent-icon">✍️</div>
+          <div class="agent-info"><div class="agent-name">Copywriter</div><div class="agent-status-text">Standby — tap to view</div></div>
+          <div class="agent-ind"></div>
+        </div>
+        <div class="agent-card" id="ac-outreach-agent" onclick="openAgentDetail('outreach-agent')">
+          <div class="agent-icon">📡</div>
+          <div class="agent-info"><div class="agent-name">Outreach Agent</div><div class="agent-status-text">Standby — tap to view</div></div>
+          <div class="agent-ind"></div>
+        </div>
+        <div class="agent-card" id="ac-social-media" onclick="openAgentDetail('social-media')">
+          <div class="agent-icon">📱</div>
+          <div class="agent-info"><div class="agent-name">Social Media Agent</div><div class="agent-status-text">Standby — tap to view</div></div>
+          <div class="agent-ind"></div>
+        </div>
+        <div class="agent-card" id="ac-design-agent" onclick="openAgentDetail('design-agent')">
+          <div class="agent-icon">🎨</div>
+          <div class="agent-info"><div class="agent-name">Design Agent</div><div class="agent-status-text">Standby — tap to view</div></div>
+          <div class="agent-ind"></div>
+        </div>
+        <div class="agent-card" id="ac-strategy-agent" onclick="openAgentDetail('strategy-agent')">
+          <div class="agent-icon">🧭</div>
+          <div class="agent-info"><div class="agent-name">Strategy Agent</div><div class="agent-status-text">Standby — tap to view</div></div>
+          <div class="agent-ind"></div>
+        </div>
       </div>
-      <div class="agent-card" id="ac-client-manager">
-        <div class="agent-icon">👤</div>
-        <div class="agent-info"><div class="agent-name">Client Manager</div><div class="agent-status-text">Standby</div></div>
-        <div class="agent-ind"></div>
+      <div class="panel-divider"></div>
+      <div class="project-section">
+        <div class="project-label">Active Projects</div>
+        <div class="project-card">
+          <div class="project-name">Onyxarro</div>
+          <div class="project-meta">Division 1 · Live at onyxarro.com</div>
+          <div class="project-bar"><div class="project-fill"></div></div>
+        </div>
       </div>
-      <div class="agent-card" id="ac-invoice-agent">
-        <div class="agent-icon">💳</div>
-        <div class="agent-info"><div class="agent-name">Invoice Agent</div><div class="agent-status-text">Standby</div></div>
-        <div class="agent-ind"></div>
-      </div>
-      <div class="agent-card" id="ac-copywriter">
-        <div class="agent-icon">✍️</div>
-        <div class="agent-info"><div class="agent-name">Copywriter</div><div class="agent-status-text">Standby</div></div>
-        <div class="agent-ind"></div>
-      </div>
-      <div class="agent-card" id="ac-outreach-agent">
-        <div class="agent-icon">📡</div>
-        <div class="agent-info"><div class="agent-name">Outreach Agent</div><div class="agent-status-text">Standby</div></div>
-        <div class="agent-ind"></div>
-      </div>
-      <div class="agent-card" id="ac-social-media">
-        <div class="agent-icon">📱</div>
-        <div class="agent-info"><div class="agent-name">Social Media Agent</div><div class="agent-status-text">Standby</div></div>
-        <div class="agent-ind"></div>
-      </div>
-      <div class="agent-card" id="ac-design-agent">
-        <div class="agent-icon">🎨</div>
-        <div class="agent-info"><div class="agent-name">Design Agent</div><div class="agent-status-text">Standby</div></div>
-        <div class="agent-ind"></div>
-      </div>
-      <div class="agent-card" id="ac-strategy-agent">
-        <div class="agent-icon">🧭</div>
-        <div class="agent-info"><div class="agent-name">Strategy Agent</div><div class="agent-status-text">Standby</div></div>
-        <div class="agent-ind"></div>
+      <div class="panel-footer">
+        <p>Powered by Claude Sonnet · <span>Real AI · Always on</span></p>
       </div>
     </div>
-    <div class="panel-divider"></div>
-    <div class="project-section">
-      <div class="project-label">Active Projects</div>
-      <div class="project-card">
-        <div class="project-name">Onyxarro</div>
-        <div class="project-meta">Division 1 · Live at onyxarro.com</div>
-        <div class="project-bar"><div class="project-fill"></div></div>
+
+    <!-- EMPIRE TAB -->
+    <div class="empire-tab-body" id="empire-tab-body">
+      <div class="empire-stat highlight">
+        <div class="empire-stat-label">Total Revenue</div>
+        <div class="empire-stat-value">$0</div>
+        <div class="empire-stat-sub">No invoices paid yet · Building pipeline</div>
       </div>
-    </div>
-    <div class="panel-footer">
-      <p>Powered by Claude Sonnet · <span>Real AI · Always on</span></p>
+      <div class="empire-grid">
+        <div class="empire-mini">
+          <div class="empire-mini-label">Clients</div>
+          <div class="empire-mini-value">0</div>
+        </div>
+        <div class="empire-mini">
+          <div class="empire-mini-label">Projects</div>
+          <div class="empire-mini-value">1</div>
+        </div>
+      </div>
+      <div class="project-label" style="padding:.2rem .2rem 0">Divisions</div>
+      <div class="empire-brand-row">
+        <div class="empire-brand-dot"></div>
+        <div class="empire-brand-info">
+          <div class="empire-brand-name">Onyxarro</div>
+          <div class="empire-brand-url">onyxarro.com</div>
+        </div>
+        <div class="empire-brand-status">Live ✓</div>
+      </div>
+      <div class="panel-footer" style="margin-top:auto">
+        <p>The Victory Co. Limited · <span>Empire HQ</span></p>
+      </div>
     </div>
   </div>
 
@@ -415,6 +483,7 @@ function checkPassword(){
   .then(function(d){
     if(d.ok){
       document.getElementById('gate').classList.add('hidden');
+      loadHistory();
     } else {
       var e=document.getElementById('gate-error');
       e.style.display='block';
@@ -424,6 +493,7 @@ function checkPassword(){
   })
   .catch(function(){
     document.getElementById('gate').classList.add('hidden');
+    loadHistory();
   });
 }
 
@@ -435,18 +505,30 @@ function togglePanel(){
   o.classList.toggle('open');
 }
 
-/* ── AGENT DETECTION ── */
+/* ── PANEL TABS ── */
+function switchTab(tab){
+  document.getElementById('tab-agents').classList.toggle('active',tab==='agents');
+  document.getElementById('tab-empire').classList.toggle('active',tab==='empire');
+  document.getElementById('agents-tab-body').style.display=tab==='agents'?'flex':'none';
+  document.getElementById('empire-tab-body').style.display=tab==='empire'?'flex':'none';
+}
+
+/* ── AGENT DATA ── */
 var AGENT_MAP=[
-  {id:'website-builder',label:'Website Builder',kw:['build','website','site','page','html','landing page','create a site','make a site']},
-  {id:'client-manager',label:'Client Manager',kw:['client','onboard','onboarding','project','roster','new client','track']},
-  {id:'invoice-agent',label:'Invoice Agent',kw:['invoice','payment','pay','deposit','overdue','chase','bill']},
-  {id:'copywriter',label:'Copywriter',kw:['write','copy','email','proposal','blog','content','headline','hero copy','about page']},
-  {id:'outreach-agent',label:'Outreach Agent',kw:['lead','leads','outreach','find','prospect','pitch','cold','hawke','napier','hastings']},
-  {id:'social-media',label:'Social Media Agent',kw:['social','instagram','linkedin','post','calendar','content calendar','30-day','30 day']},
-  {id:'design-agent',label:'Design Agent',kw:['logo','brand','graphic','visual','mockup','colour','color','palette']},
-  {id:'strategy-agent',label:'Strategy Agent',kw:['plan','strategy','roadmap','growth','90-day','90 day','goal','next move','division']},
+  {id:'website-builder',label:'Website Builder',icon:'🏗️',role:'Builds complete websites from a client brief — HTML, CSS, copy, everything.',kw:['build','website','site','page','html','landing page','create a site','make a site']},
+  {id:'client-manager',label:'Client Manager',icon:'👤',role:'Onboards new clients, tracks projects, keeps the roster up to date.',kw:['client','onboard','onboarding','project','roster','new client','track']},
+  {id:'invoice-agent',label:'Invoice Agent',icon:'💳',role:'Creates invoices, tracks payments, chases overdue bills.',kw:['invoice','payment','pay','deposit','overdue','chase','bill']},
+  {id:'copywriter',label:'Copywriter',icon:'✍️',role:'Writes all copy — websites, emails, proposals, social posts, blogs.',kw:['write','copy','email','proposal','blog','content','headline','hero copy','about page']},
+  {id:'outreach-agent',label:'Outreach Agent',icon:'📡',role:'Finds leads, writes cold pitches, builds follow-up sequences.',kw:['lead','leads','outreach','find','prospect','pitch','cold','hawke','napier','hastings']},
+  {id:'social-media',label:'Social Media Agent',icon:'📱',role:'Plans, writes, and schedules social media content and calendars.',kw:['social','instagram','linkedin','post','calendar','content calendar','30-day','30 day']},
+  {id:'design-agent',label:'Design Agent',icon:'🎨',role:'Creates visual concepts — logos, brand kits, mockup direction, colour palettes.',kw:['logo','brand','graphic','visual','mockup','colour','color','palette']},
+  {id:'strategy-agent',label:'Strategy Agent',icon:'🧭',role:'Builds business plans, growth strategies, and 90-day roadmaps.',kw:['plan','strategy','roadmap','growth','90-day','90 day','goal','next move','division']},
 ];
 
+/* ── AGENT TASK LOG ── */
+var agentTaskLog={}; // {agentId: [{userMsg, teddyMsg, time}]}
+
+/* ── AGENT DETECTION ── */
 function detectAgent(text){
   var low=text.toLowerCase();
   var best=null,top=0;
@@ -459,11 +541,18 @@ function detectAgent(text){
 function activateAgent(id){
   document.querySelectorAll('.agent-card').forEach(function(c){
     c.classList.remove('active');
-    c.querySelector('.agent-status-text').textContent='Standby';
+    var st=c.querySelector('.agent-status-text');
+    if(!c.classList.contains('done'))st.textContent='Standby — tap to view';
   });
   if(!id)return;
   var card=document.getElementById('ac-'+id);
   if(card){card.classList.add('active');card.querySelector('.agent-status-text').textContent='Working…';}
+  // update modal if open
+  var amd=document.getElementById('amd-ind');
+  if(document.getElementById('agent-modal-overlay').classList.contains('open')&&currentModalAgent===id){
+    if(amd){amd.classList.add('active');}
+    document.getElementById('amd-status').textContent='Working…';
+  }
 }
 function doneAgent(id){
   if(!id)return;
@@ -472,8 +561,97 @@ function doneAgent(id){
     card.classList.remove('active');
     card.classList.add('done');
     card.querySelector('.agent-status-text').textContent='Done ✓';
-    setTimeout(function(){card.classList.remove('done');card.querySelector('.agent-status-text').textContent='Standby';},4000);
+    setTimeout(function(){
+      card.classList.remove('done');
+      card.querySelector('.agent-status-text').textContent='Standby — tap to view';
+    },4000);
   }
+  if(document.getElementById('agent-modal-overlay').classList.contains('open')&&currentModalAgent===id){
+    document.getElementById('amd-ind').classList.remove('active');
+    document.getElementById('amd-status').textContent='Last task complete ✓';
+  }
+}
+
+/* ── AGENT DETAIL MODAL ── */
+var currentModalAgent=null;
+
+function openAgentDetail(agentId){
+  var agent=AGENT_MAP.find(function(a){return a.id===agentId;});
+  if(!agent)return;
+  currentModalAgent=agentId;
+  document.getElementById('amd-icon').textContent=agent.icon;
+  document.getElementById('amd-name').textContent=agent.label;
+  document.getElementById('amd-role').textContent=agent.role;
+  var card=document.getElementById('ac-'+agentId);
+  var isActive=card&&card.classList.contains('active');
+  var ind=document.getElementById('amd-ind');
+  ind.classList.toggle('active',isActive);
+  document.getElementById('amd-status').textContent=isActive?'Working…':'Standby';
+  renderAgentTasks(agentId);
+  document.getElementById('agent-modal-overlay').classList.add('open');
+}
+function closeAgentDetail(e){
+  if(e&&e.target!==document.getElementById('agent-modal-overlay'))return;
+  document.getElementById('agent-modal-overlay').classList.remove('open');
+  currentModalAgent=null;
+}
+function renderAgentTasks(agentId){
+  var body=document.getElementById('amd-body');
+  var tasks=agentTaskLog[agentId]||[];
+  if(tasks.length===0){
+    body.innerHTML='<div class="task-empty"><strong>💤</strong>No tasks yet.<br>Send Teddy a message that involves this agent and the task log will appear here.</div>';
+    return;
+  }
+  body.innerHTML='<div class="task-section-label">Task History ('+tasks.length+')</div>';
+  tasks.slice().reverse().forEach(function(t){
+    var entry=document.createElement('div');
+    entry.className='task-entry';
+    entry.innerHTML='<div class="task-entry-user">'+esc(t.userMsg)+'</div>'
+      +'<div class="task-entry-response">'+esc(t.teddyMsg)+'</div>'
+      +'<div class="task-entry-time">'+t.time+'</div>';
+    body.appendChild(entry);
+  });
+}
+
+/* ── FILE UPLOADS ── */
+var pendingFiles=[];
+
+function handleFiles(files){
+  Array.from(files).forEach(function(file){
+    var reader=new FileReader();
+    if(file.type.startsWith('image/')){
+      reader.onload=function(e){
+        pendingFiles.push({name:file.name,type:file.type,data:e.target.result.split(',')[1],preview:e.target.result});
+        renderFilePreviews();
+      };
+      reader.readAsDataURL(file);
+    } else {
+      reader.onload=function(e){
+        pendingFiles.push({name:file.name,type:'text',text:e.target.result});
+        renderFilePreviews();
+      };
+      reader.readAsText(file);
+    }
+  });
+  document.getElementById('file-input').value='';
+}
+function renderFilePreviews(){
+  var bar=document.getElementById('file-preview-bar');
+  bar.innerHTML='';
+  pendingFiles.forEach(function(f,i){
+    var chip=document.createElement('div');
+    chip.className='file-chip';
+    if(f.preview){
+      chip.innerHTML='<img class="file-chip-img" src="'+f.preview+'"/><span>'+esc(f.name)+'</span><span class="file-chip-remove" onclick="removeFile('+i+')">✕</span>';
+    } else {
+      chip.innerHTML='<span>📄 '+esc(f.name)+'</span><span class="file-chip-remove" onclick="removeFile('+i+')">✕</span>';
+    }
+    bar.appendChild(chip);
+  });
+}
+function removeFile(i){
+  pendingFiles.splice(i,1);
+  renderFilePreviews();
 }
 
 /* ── CONVERSATION HISTORY ── */
@@ -491,13 +669,12 @@ async function loadHistory(){
         if(m.role==='user'){
           addUserMsg(m.content);
         } else {
-          addTeddyMsg(null,m.content);
+          addTeddyMsg(null,m.content,true); // instant, no typewriter on load
         }
       });
     }
   }catch(e){}
 }
-loadHistory();
 
 /* ── SAVE MESSAGE ── */
 function saveMsg(role,content){
@@ -510,7 +687,7 @@ function saveMsg(role,content){
 
 /* ── MESSAGE RENDERING ── */
 function getTime(){return new Date().toLocaleTimeString('en-NZ',{hour:'2-digit',minute:'2-digit'});}
-function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function removeWelcome(){var w=document.getElementById('welcome');if(w)w.remove();}
 function scrollEnd(){var m=document.getElementById('messages');m.scrollTop=m.scrollHeight;}
 
@@ -531,49 +708,40 @@ function addTyping(){
   scrollEnd();return el;
 }
 
-function addTeddyMsg(agentLabel, fullText){
+function addTeddyMsg(agentLabel,fullText,instant){
   var el=document.createElement('div');
   el.className='msg teddy';
-
   var avatar=document.createElement('div');
-  avatar.className='msg-avatar';
-  avatar.textContent='T';
-
+  avatar.className='msg-avatar';avatar.textContent='T';
   var body=document.createElement('div');
   body.className='msg-body';
-
   var nameEl=document.createElement('div');
-  nameEl.className='msg-name';
-  nameEl.textContent='Teddy';
+  nameEl.className='msg-name';nameEl.textContent='Teddy';
   body.appendChild(nameEl);
-
   if(agentLabel){
     var tag=document.createElement('div');
-    tag.className='agent-tag';
-    tag.textContent='▲ '+agentLabel;
+    tag.className='agent-tag';tag.textContent='▲ '+agentLabel;
     body.appendChild(tag);
   }
-
   var bubble=document.createElement('div');
   bubble.className='msg-bubble';
   body.appendChild(bubble);
-
   var timeEl=document.createElement('div');
   timeEl.className='msg-time';
   body.appendChild(timeEl);
-
-  el.appendChild(avatar);
-  el.appendChild(body);
+  el.appendChild(avatar);el.appendChild(body);
   document.getElementById('messages').appendChild(el);
   scrollEnd();
-
-  // typewriter — faster on mobile
+  if(instant){
+    bubble.textContent=fullText;
+    timeEl.textContent=getTime();
+    return bubble;
+  }
   var typeSpeed=window.innerWidth<=700?3:8;
   var i=0;
   function typeChar(){
     if(i<fullText.length){
-      bubble.textContent+=fullText[i];
-      i++;
+      bubble.textContent+=fullText[i];i++;
       scrollEnd();
       setTimeout(typeChar,typeSpeed);
     } else {
@@ -591,62 +759,64 @@ async function sendMessage(){
   if(busy)return;
   var inp=document.getElementById('input');
   var text=inp.value.trim();
-  if(!text)return;
+  if(!text&&pendingFiles.length===0)return;
+  var displayText=text||(pendingFiles.length+' file'+(pendingFiles.length>1?'s':'')+' attached');
   inp.value='';inp.style.height='';
   busy=true;
   document.getElementById('send-btn').disabled=true;
 
-  addUserMsg(text);
-  chatHistory.push({role:'user',content:text});
-  saveMsg('user',text);
+  addUserMsg(displayText);
+  chatHistory.push({role:'user',content:text||'[File attached — see description]'});
+  saveMsg('user',displayText);
 
   var agent=detectAgent(text);
   if(agent)activateAgent(agent.id);
 
   var typingEl=addTyping();
 
+  var filesPayload=pendingFiles.length>0?pendingFiles.map(function(f){
+    return f.type==='text'?{name:f.name,type:'text',text:f.text}:{name:f.name,type:f.type,data:f.data};
+  }):undefined;
+  pendingFiles=[];
+  renderFilePreviews();
+
   try{
+    var body={messages:chatHistory};
+    if(filesPayload)body.files=filesPayload;
     var response=await fetch('/api/chat',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({messages:chatHistory})
+      body:JSON.stringify(body)
     });
-
     var data=await response.json();
     typingEl.remove();
-
     var fullText=data.text||data.error||'Teddy could not respond. Try again.';
     chatHistory.push({role:'assistant',content:fullText});
-
-    addTeddyMsg(agent?agent.label:null, fullText);
+    if(agent){
+      if(!agentTaskLog[agent.id])agentTaskLog[agent.id]=[];
+      agentTaskLog[agent.id].push({userMsg:text,teddyMsg:fullText,time:getTime()});
+      if(currentModalAgent===agent.id)renderAgentTasks(agent.id);
+    }
+    addTeddyMsg(agent?agent.label:null,fullText,false);
     saveMsg('assistant',fullText);
     if(agent)setTimeout(function(){doneAgent(agent.id);},1500);
-
   }catch(err){
     typingEl.remove();
-    addTeddyMsg(null,'Error: '+err.message+'. Check the server is running.');
+    addTeddyMsg(null,'Error: '+err.message+'. Check server is running.',false);
   }
-
   busy=false;
   document.getElementById('send-btn').disabled=false;
   document.getElementById('input').focus();
 }
 
-function chipSend(el){
-  document.getElementById('input').value=el.textContent;
-  sendMessage();
-}
+function chipSend(el){document.getElementById('input').value=el.textContent;sendMessage();}
 function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
 function autoGrow(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px';}
 
 /* ── iOS KEYBOARD FIX ── */
-/* When keyboard opens on iPhone, scroll messages to bottom so input stays visible */
 if(window.visualViewport){
-  window.visualViewport.addEventListener('resize',function(){
-    scrollEnd();
-  });
+  window.visualViewport.addEventListener('resize',function(){scrollEnd();});
 }
-/* Hide mobile chips when keyboard is up, show when closed */
 var inp2=document.getElementById('input');
 if(inp2){
   inp2.addEventListener('focus',function(){
@@ -658,6 +828,11 @@ if(inp2){
     if(chips&&window.innerWidth<=700)chips.style.display='';
   });
 }
+
+/* ── LOAD HISTORY ON START (only after gate) ── */
+// Delay until after gate check — loadHistory() is called inside checkPassword on success
+// But also load immediately if gate is somehow skipped (dev mode)
+if(document.getElementById('gate').classList.contains('hidden')){loadHistory();}
 </script>
 </body>
 </html>

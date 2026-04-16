@@ -75,18 +75,39 @@ app.post('/api/auth', (req, res) => {
 
 /* ── CHAT ENDPOINT ── */
 app.post('/api/chat', async (req, res) => {
-  const { messages } = req.body;
+  const { messages, files } = req.body;
 
   if (!messages || !Array.isArray(messages)) {
     return res.status(400).json({ error: 'Invalid messages' });
   }
 
   try {
+    // Build messages — attach files to the last user message if present
+    const apiMessages = messages.map((m, idx) => {
+      const isLastUser = idx === messages.length - 1 && m.role === 'user';
+      if (isLastUser && files && files.length > 0) {
+        const content = [];
+        files.forEach(f => {
+          if (f.type && f.type.startsWith('image/')) {
+            content.push({
+              type: 'image',
+              source: { type: 'base64', media_type: f.type, data: f.data }
+            });
+          } else if (f.text) {
+            content.push({ type: 'text', text: `[Attached file: ${f.name}]\n${f.text}` });
+          }
+        });
+        if (m.content) content.push({ type: 'text', text: m.content });
+        return { role: m.role, content };
+      }
+      return { role: m.role, content: m.content };
+    });
+
     const response = await client.messages.create({
       model: 'claude-sonnet-4-6',
-      max_tokens: 1024,
+      max_tokens: 2048,
       system: loadSystemPrompt(),
-      messages: messages.map(m => ({ role: m.role, content: m.content })),
+      messages: apiMessages,
     });
 
     const text = response.content[0]?.text || 'No response from Teddy.';
