@@ -180,22 +180,75 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
 
 /* ── MOBILE ── */
 @media(max-width:700px){
+  html,body{height:100%;height:100dvh}
+
+  /* header */
+  header{padding:.65rem 1rem}
   .header-time{display:none}
   .header-divider{display:none}
   .header-title-sub{display:none}
-  .panel-toggle{display:flex}
+  .logo-wordmark{font-size:13px}
+  .status-pill{font-size:.6rem;padding:.22rem .6rem}
+  .panel-toggle{display:flex;width:38px;height:38px}
+
+  /* layout */
   .main{grid-template-columns:1fr}
-  .agent-panel{
-    position:fixed;right:0;top:0;bottom:0;width:280px;z-index:50;
-    transform:translateX(100%);
+
+  /* chips bar — horizontal scroll, always visible */
+  .welcome{display:none!important}
+  .mobile-chips{
+    display:flex;gap:.4rem;padding:.6rem 1rem;
+    overflow-x:auto;flex-shrink:0;
+    border-bottom:1px solid var(--border);
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;
   }
-  .agent-panel.open{transform:translateX(0)}
-  .panel-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:49}
-  .panel-overlay.open{display:block}
+  .mobile-chips::-webkit-scrollbar{display:none}
+  .mobile-chips .chip{white-space:nowrap;font-size:.68rem;padding:.3rem .75rem;flex-shrink:0}
+
+  /* messages */
+  .messages{padding:.9rem .9rem;gap:.75rem}
+  .msg-bubble{font-size:.88rem;padding:.65rem .85rem}
+  .msg-avatar{width:28px;height:28px;font-size:.65rem}
+  .msg-body{max-width:82%}
+
+  /* input */
+  .chat-input-area{
+    padding:.7rem .9rem;
+    padding-bottom:max(.7rem,env(safe-area-inset-bottom));
+  }
+  .input-box{font-size:16px;padding:.6rem .85rem;min-height:44px} /* 16px stops iOS zoom */
+  .send-btn{width:44px;height:44px;border-radius:12px}
   .input-hint{display:none}
+
+  /* agent panel — bottom sheet */
+  .agent-panel{
+    position:fixed;left:0;right:0;bottom:0;
+    height:75vh;border-radius:20px 20px 0 0;
+    border-left:none;border-top:1px solid var(--border2);
+    z-index:50;transform:translateY(100%);
+    transition:transform .3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .agent-panel.open{transform:translateY(0)}
+  .panel-handle{
+    display:flex;justify-content:center;padding:.7rem 0 .3rem;flex-shrink:0;cursor:pointer;
+  }
+  .panel-handle::after{
+    content:'';width:36px;height:4px;border-radius:2px;background:var(--border2);
+  }
+  .panel-overlay{
+    display:none;position:fixed;inset:0;
+    background:rgba(0,0,0,.6);z-index:49;
+  }
+  .panel-overlay.open{display:block}
+
+  /* typing dots bigger */
+  .tdot{width:7px;height:7px}
 }
+
 @media(min-width:701px){
   .panel-overlay{display:none!important}
+  .mobile-chips{display:none}
+  .panel-handle{display:none}
 }
 </style>
 </head>
@@ -233,6 +286,17 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
   </div>
 </header>
 
+<!-- MOBILE QUICK CHIPS -->
+<div class="mobile-chips" id="mobile-chips">
+  <div class="chip" onclick="chipSend(this)">Status report</div>
+  <div class="chip" onclick="chipSend(this)">Find leads</div>
+  <div class="chip" onclick="chipSend(this)">New client</div>
+  <div class="chip" onclick="chipSend(this)">Write copy</div>
+  <div class="chip" onclick="chipSend(this)">Invoice</div>
+  <div class="chip" onclick="chipSend(this)">90-day plan</div>
+  <div class="chip" onclick="chipSend(this)">Instagram calendar</div>
+</div>
+
 <!-- MAIN -->
 <div class="main">
 
@@ -267,6 +331,7 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
 
   <!-- AGENTS -->
   <div class="agent-panel" id="agent-panel">
+    <div class="panel-handle" onclick="togglePanel()"></div>
     <div class="panel-header">
       <div class="panel-title">Sub-Agent Team</div>
       <div class="panel-subtitle">8 Agents Ready</div>
@@ -502,14 +567,15 @@ function addTeddyMsg(agentLabel, fullText){
   document.getElementById('messages').appendChild(el);
   scrollEnd();
 
-  // typewriter
+  // typewriter — faster on mobile
+  var typeSpeed=window.innerWidth<=700?3:8;
   var i=0;
   function typeChar(){
     if(i<fullText.length){
       bubble.textContent+=fullText[i];
       i++;
       scrollEnd();
-      setTimeout(typeChar,8);
+      setTimeout(typeChar,typeSpeed);
     } else {
       timeEl.textContent=getTime();
     }
@@ -572,6 +638,26 @@ function chipSend(el){
 }
 function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
 function autoGrow(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px';}
+
+/* ── iOS KEYBOARD FIX ── */
+/* When keyboard opens on iPhone, scroll messages to bottom so input stays visible */
+if(window.visualViewport){
+  window.visualViewport.addEventListener('resize',function(){
+    scrollEnd();
+  });
+}
+/* Hide mobile chips when keyboard is up, show when closed */
+var inp2=document.getElementById('input');
+if(inp2){
+  inp2.addEventListener('focus',function(){
+    var chips=document.getElementById('mobile-chips');
+    if(chips&&window.innerWidth<=700)chips.style.display='none';
+  });
+  inp2.addEventListener('blur',function(){
+    var chips=document.getElementById('mobile-chips');
+    if(chips&&window.innerWidth<=700)chips.style.display='';
+  });
+}
 </script>
 </body>
 </html>
