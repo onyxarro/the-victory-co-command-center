@@ -63,6 +63,33 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
 .panel-toggle:hover{background:var(--surface3);color:#fff}
 .header-time{font-size:.62rem;color:var(--text-muted)}
 
+/* ── HEADER ACTIONS ── */
+.header-actions{position:relative;display:flex;align-items:center;gap:.5rem}
+.hdr-btn{height:32px;border-radius:9px;border:1px solid var(--border2);background:var(--surface2);color:var(--text-muted);cursor:pointer;display:flex;align-items:center;gap:.4rem;padding:0 .75rem;font-size:.65rem;font-weight:700;letter-spacing:.5px;font-family:var(--font);transition:all .2s;white-space:nowrap}
+.hdr-btn:hover{background:var(--surface3);color:#fff;border-color:var(--border2)}
+.hdr-btn.primary{background:rgba(14,165,233,.1);border-color:rgba(14,165,233,.25);color:var(--teal)}
+.hdr-btn.primary:hover{background:rgba(14,165,233,.18)}
+.hdr-btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+/* dropdown */
+.hdr-dropdown{position:absolute;top:calc(100% + 6px);right:0;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:.4rem;min-width:180px;z-index:100;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .15s,transform .15s;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.hdr-dropdown.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.dd-item{display:flex;align-items:center;gap:.6rem;padding:.55rem .75rem;border-radius:8px;font-size:.75rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .15s}
+.dd-item:hover{background:var(--surface3);color:#fff}
+.dd-item.danger:hover{background:rgba(248,113,113,.1);color:#f87171}
+.dd-item svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.dd-sep{height:1px;background:var(--border);margin:.3rem 0}
+
+/* confirm toast */
+.confirm-toast{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface2);border:1px solid var(--border2);border-radius:14px;padding:.85rem 1.25rem;display:flex;align-items:center;gap:.85rem;z-index:300;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.confirm-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:all}
+.confirm-toast-text{font-size:.78rem;color:var(--text-muted)}
+.confirm-toast-btns{display:flex;gap:.5rem}
+.ct-btn{padding:.35rem .75rem;border-radius:8px;border:1px solid var(--border2);background:var(--surface3);color:var(--text-muted);font-size:.72rem;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .15s}
+.ct-btn:hover{color:#fff}
+.ct-btn.ct-danger{border-color:rgba(248,113,113,.3);color:#f87171}
+.ct-btn.ct-danger:hover{background:rgba(248,113,113,.1)}
+
 /* ── LAYOUT ── */
 .main{flex:1;display:grid;grid-template-columns:1fr 300px;overflow:hidden;min-height:0}
 
@@ -222,6 +249,9 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
   .logo-wordmark{font-size:13px}
   .status-pill{font-size:.6rem;padding:.22rem .6rem}
   .panel-toggle{display:flex;width:38px;height:38px}
+  .hdr-btn.primary span{display:none} /* hide "New Chat" text on mobile, keep icon */
+  .hdr-btn.primary{padding:0 .6rem;width:34px;justify-content:center}
+  .confirm-toast{width:calc(100% - 2rem);white-space:normal;flex-direction:column;align-items:flex-start;gap:.65rem}
   .main{grid-template-columns:1fr}
   .welcome{display:none!important}
   .mobile-chips{display:flex;gap:.4rem;padding:.6rem 1rem;overflow-x:auto;flex-shrink:0;border-bottom:1px solid var(--border);scrollbar-width:none;-webkit-overflow-scrolling:touch;}
@@ -296,6 +326,15 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
 <!-- FILE INPUT (hidden) -->
 <input type="file" id="file-input" multiple accept="image/*,.pdf,.txt,.csv,.md" style="display:none" onchange="handleFiles(this.files)"/>
 
+<!-- CONFIRM TOAST -->
+<div class="confirm-toast" id="confirm-toast">
+  <div class="confirm-toast-text" id="confirm-toast-text">Clear all memory? This cannot be undone.</div>
+  <div class="confirm-toast-btns">
+    <button class="ct-btn" onclick="dismissToast()">Cancel</button>
+    <button class="ct-btn ct-danger" id="confirm-toast-action">Clear</button>
+  </div>
+</div>
+
 <!-- HEADER -->
 <header>
   <div class="header-left">
@@ -309,6 +348,26 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
   <div class="header-right">
     <div class="status-pill"><div class="status-dot"></div>Teddy Online</div>
     <div class="header-time" id="htime"></div>
+    <div class="header-actions">
+      <button class="hdr-btn primary" onclick="newChat()" title="Start a new conversation">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span>New Chat</span>
+      </button>
+      <button class="hdr-btn" onclick="toggleMenu()" id="menu-btn" title="More options">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="19" r="1.2" fill="currentColor"/></svg>
+      </button>
+      <div class="hdr-dropdown" id="hdr-dropdown">
+        <div class="dd-item" onclick="newChat();closeMenu()">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          New Chat
+        </div>
+        <div class="dd-sep"></div>
+        <div class="dd-item danger" onclick="confirmClearHistory()">
+          <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+          Clear All Memory
+        </div>
+      </div>
+    </div>
     <button class="panel-toggle" onclick="togglePanel()" title="Toggle agents">⚡</button>
   </div>
 </header>
@@ -812,6 +871,71 @@ async function sendMessage(){
 function chipSend(el){document.getElementById('input').value=el.textContent;sendMessage();}
 function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
 function autoGrow(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px';}
+
+/* ── NEW CHAT ── */
+function newChat(){
+  chatHistory=[];
+  agentTaskLog={};
+  var msgs=document.getElementById('messages');
+  msgs.innerHTML='';
+  // restore welcome screen
+  var w=document.createElement('div');
+  w.className='welcome';w.id='welcome';
+  w.innerHTML='<div class="welcome-icon">T</div><h2>Teddy is ready.</h2><p>Your Master Commander Agent for The Victory Co. Tell me what needs to get done — I\'ll take it from there.</p><div class="chips"><div class="chip" onclick="chipSend(this)">Find leads in Hawke\'s Bay</div><div class="chip" onclick="chipSend(this)">New client onboarding</div><div class="chip" onclick="chipSend(this)">Write hero copy for a client</div><div class="chip" onclick="chipSend(this)">Status report on everything</div><div class="chip" onclick="chipSend(this)">30-day Instagram calendar</div><div class="chip" onclick="chipSend(this)">90-day growth plan for Onyxarro</div></div>';
+  msgs.appendChild(w);
+  // reset agent cards
+  document.querySelectorAll('.agent-card').forEach(function(c){
+    c.classList.remove('active','done');
+    c.querySelector('.agent-status-text').textContent='Standby — tap to view';
+  });
+  document.getElementById('input').value='';
+  document.getElementById('input').style.height='';
+  pendingFiles=[];renderFilePreviews();
+  closeMenu();
+}
+
+/* ── HEADER MENU ── */
+function toggleMenu(){
+  var dd=document.getElementById('hdr-dropdown');
+  dd.classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('hdr-dropdown').classList.remove('open');
+}
+// close menu on outside click
+document.addEventListener('click',function(e){
+  var dd=document.getElementById('hdr-dropdown');
+  var btn=document.getElementById('menu-btn');
+  if(dd.classList.contains('open')&&!dd.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){
+    dd.classList.remove('open');
+  }
+});
+
+/* ── CONFIRM TOAST ── */
+var toastTimeout=null;
+function showToast(text,actionLabel,actionFn){
+  var toast=document.getElementById('confirm-toast');
+  document.getElementById('confirm-toast-text').textContent=text;
+  var btn=document.getElementById('confirm-toast-action');
+  btn.textContent=actionLabel;
+  btn.onclick=function(){actionFn();dismissToast();};
+  toast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout=setTimeout(dismissToast,8000);
+}
+function dismissToast(){
+  document.getElementById('confirm-toast').classList.remove('show');
+}
+function confirmClearHistory(){
+  closeMenu();
+  showToast('Clear all saved memory? This cannot be undone.','Clear Everything',clearAllHistory);
+}
+async function clearAllHistory(){
+  try{
+    await fetch('/api/history',{method:'DELETE'});
+  }catch(e){}
+  newChat();
+}
 
 /* ── iOS KEYBOARD FIX ── */
 if(window.visualViewport){
