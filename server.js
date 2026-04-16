@@ -22,41 +22,31 @@ const supabase = process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY
 
 /* ── GET CHAT HISTORY ── */
 app.get('/api/history', async (req, res) => {
-  if (!supabase) return res.json({ messages: [] });
-  try {
-    const { data, error } = await supabase
-      .from('teddy_messages')
-      .select('*')
-      .order('created_at', { ascending: true })
-      .limit(100);
-    if (error) throw error;
-    res.json({ messages: data || [] });
-  } catch (e) {
-    res.json({ messages: [] });
-  }
+  if (!supabase) return res.json({ messages: [], debug: 'no supabase client' });
+  const { data, error } = await supabase
+    .from('teddy_messages')
+    .select('*')
+    .order('created_at', { ascending: true })
+    .limit(100);
+  if (error) return res.json({ messages: [], debug: error.message });
+  res.json({ messages: data || [] });
 });
 
 /* ── SAVE MESSAGE ── */
 app.post('/api/history', async (req, res) => {
-  if (!supabase) return res.json({ ok: true });
+  if (!supabase) return res.json({ ok: false, debug: 'no supabase client' });
   const { role, content } = req.body;
-  try {
-    await supabase.from('teddy_messages').insert({ role, content });
-    res.json({ ok: true });
-  } catch (e) {
-    res.json({ ok: false });
-  }
+  const { error } = await supabase.from('teddy_messages').insert({ role, content });
+  if (error) return res.json({ ok: false, debug: error.message });
+  res.json({ ok: true });
 });
 
 /* ── CLEAR HISTORY ── */
 app.delete('/api/history', async (req, res) => {
   if (!supabase) return res.json({ ok: true });
-  try {
-    await supabase.from('teddy_messages').delete().neq('id', 0);
-    res.json({ ok: true });
-  } catch (e) {
-    res.json({ ok: false });
-  }
+  const { error } = await supabase.from('teddy_messages').delete().neq('id', 0);
+  if (error) return res.json({ ok: false, debug: error.message });
+  res.json({ ok: true });
 });
 
 /* ── TEDDY SYSTEM PROMPT — reads from master agent MD file ── */
