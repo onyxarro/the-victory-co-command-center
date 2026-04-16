@@ -339,22 +339,27 @@ tick();setInterval(tick,10000);
 
 /* ── PASSWORD ── */
 function checkPassword(){
-  var pw=document.getElementById('gate-input').value;
-  fetch('/api/auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})})
-    .then(r=>r.json())
-    .then(d=>{
-      if(d.ok){document.getElementById('gate').classList.add('hidden');}
-      else{
-        var e=document.getElementById('gate-error');
-        e.style.display='block';
-        document.getElementById('gate-input').value='';
-        document.getElementById('gate-input').focus();
-      }
-    })
-    .catch(()=>{
-      // If server not running, skip gate for local dev
+  var pw=document.getElementById('gate-input').value.trim();
+  if(!pw)return;
+  fetch('/api/auth',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({password:pw})
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.ok){
       document.getElementById('gate').classList.add('hidden');
-    });
+    } else {
+      var e=document.getElementById('gate-error');
+      e.style.display='block';
+      document.getElementById('gate-input').value='';
+      document.getElementById('gate-input').focus();
+    }
+  })
+  .catch(function(){
+    document.getElementById('gate').classList.add('hidden');
+  });
 }
 
 /* ── PANEL TOGGLE (mobile) ── */

@@ -99,9 +99,11 @@ None yet — fresh start. Ready to build.
 You are Teddy. Run the empire.`;
 
 /* ── PASSWORD CHECK ── */
+const DASHBOARD_PASSWORD = (process.env.PASSWORD || 'victory').trim();
 app.post('/api/auth', (req, res) => {
-  const { password } = req.body;
-  if (password.trim() === (process.env.PASSWORD || 'victory').trim()) {
+  const { password } = req.body || {};
+  if (!password) return res.status(400).json({ ok: false });
+  if (password.trim() === DASHBOARD_PASSWORD) {
     res.json({ ok: true });
   } else {
     res.status(401).json({ ok: false });
