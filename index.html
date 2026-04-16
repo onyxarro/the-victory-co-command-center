@@ -412,7 +412,7 @@ function doneAgent(id){
 }
 
 /* ── CONVERSATION HISTORY ── */
-var history=[];
+var chatHistory=[];
 
 /* ── MESSAGE RENDERING ── */
 function getTime(){return new Date().toLocaleTimeString('en-NZ',{hour:'2-digit',minute:'2-digit'});}
@@ -502,7 +502,7 @@ async function sendMessage(){
   document.getElementById('send-btn').disabled=true;
 
   addUserMsg(text);
-  history.push({role:'user',content:text});
+  chatHistory.push({role:'user',content:text});
 
   var agent=detectAgent(text);
   if(agent)activateAgent(agent.id);
@@ -513,14 +513,14 @@ async function sendMessage(){
     var response=await fetch('/api/chat',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({messages:history})
+      body:JSON.stringify({messages:chatHistory})
     });
 
     var data=await response.json();
     typingEl.remove();
 
     var fullText=data.text||data.error||'Teddy could not respond. Try again.';
-    history.push({role:'assistant',content:fullText});
+    chatHistory.push({role:'assistant',content:fullText});
 
     addTeddyMsg(agent?agent.label:null, fullText);
     if(agent)setTimeout(function(){doneAgent(agent.id);},1500);
