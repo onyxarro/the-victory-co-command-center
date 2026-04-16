@@ -414,6 +414,35 @@ function doneAgent(id){
 /* ── CONVERSATION HISTORY ── */
 var chatHistory=[];
 
+/* ── LOAD HISTORY FROM SERVER ── */
+async function loadHistory(){
+  try{
+    var r=await fetch('/api/history');
+    var d=await r.json();
+    if(d.messages&&d.messages.length>0){
+      removeWelcome();
+      d.messages.forEach(function(m){
+        chatHistory.push({role:m.role,content:m.content});
+        if(m.role==='user'){
+          addUserMsg(m.content);
+        } else {
+          addTeddyMsg(null,m.content);
+        }
+      });
+    }
+  }catch(e){}
+}
+loadHistory();
+
+/* ── SAVE MESSAGE ── */
+function saveMsg(role,content){
+  fetch('/api/history',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({role:role,content:content})
+  }).catch(function(){});
+}
+
 /* ── MESSAGE RENDERING ── */
 function getTime(){return new Date().toLocaleTimeString('en-NZ',{hour:'2-digit',minute:'2-digit'});}
 function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -503,6 +532,7 @@ async function sendMessage(){
 
   addUserMsg(text);
   chatHistory.push({role:'user',content:text});
+  saveMsg('user',text);
 
   var agent=detectAgent(text);
   if(agent)activateAgent(agent.id);
@@ -523,6 +553,7 @@ async function sendMessage(){
     chatHistory.push({role:'assistant',content:fullText});
 
     addTeddyMsg(agent?agent.label:null, fullText);
+    saveMsg('assistant',fullText);
     if(agent)setTimeout(function(){doneAgent(agent.id);},1500);
 
   }catch(err){
