@@ -1,9 +1,9 @@
 # The Victory Co. Limited — Master Commander Agent
 
-> **Version:** 2.4 — Updated April 2026  
-> **Last Updated:** April 2026  
+> **Version:** 3.1 — Updated April 2026  
+> **Last Updated:** April 22, 2026  
 > **Owner:** Victory Peni  
-> **Status:** Active — Onyxarro live at onyxarro.com. No active clients yet. Ready to build.
+> **Status:** Active — Onyxarro live (lead funnel + UGC ads + niche landers + creator partnerships running). Midas Gold Sniper live on VPS, migrated from IG to CMC MT4 via MetaAPI, awaiting $100 NZD funding.
 
 ---
 
@@ -37,7 +37,7 @@ The Victory Co. Limited is a holding company operating multiple businesses. Each
 **Website:** onyxarro.com *(live)*  
 **Email:** hello@onyxarro.com  
 **Agent (Commander):** Teddy  
-**Status:** Live — no active clients yet  
+**Status:** Fully operational — no active clients yet  
 **Location:** Napier, New Zealand — serving clients globally  
 **Tagline:** Websites built in 48 hours  
 
@@ -99,18 +99,54 @@ The Victory Co. Limited is a holding company operating multiple businesses. Each
 | 2 | Stripe checkout (full + deposit) | ✅ Done |
 | 3 | Currency auto-switcher | ✅ Done |
 | 4 | Contact form via Formspree | ✅ Done |
-| 5 | Automated onboarding → triggers Claude API build | Planned |
-| 6 | Claude API website builder from client brief | Planned |
-| 7 | Auto client preview via Vercel deploy | Planned |
-| 8 | Automated email notifications via Resend/SendGrid | Planned |
-| 9 | Project tracking dashboard via Supabase | Planned |
-| 10 | Auto invoicing on milestone completion | Planned |
-| 11 | PayPal as secondary checkout option | Planned |
+| 5 | OG image (1200x630) + Twitter/X card meta tags | ✅ Done |
+| 6 | SVG favicon across all pages | ✅ Done |
+| 7 | Full site audit — all pages verified functional | ✅ Done |
+| 8 | Firecrawl MCP — prospect scraping + competitive analysis | ✅ Done |
+| 9 | Multi-page site restructure (services/work/about/templates) | ✅ Done |
+| 10 | Trust pages (Terms, Privacy, Refund) | ✅ Done |
+| 11 | SEO — schema markup, FAQ, meta tags, canonical URLs | ✅ Done |
+| 12 | Templates gallery page | ✅ Done |
+| 13 | Stripe webhook → automated confirmation emails via Brevo | ✅ Done |
+| 14 | Onboarding form → auto "Brief Received" email | ✅ Done |
+| 15 | Checkout form → Formspree capture | ✅ Done |
+| 16 | Cold outreach templates (no-website leads, 3-email sequence) | ✅ Done |
+| 17 | Post-payment email templates (5 templates: confirm, brief, preview, live, testimonial) | ✅ Done |
+| 18 | 4 prospect demos built + deployed (Cafe Ahuriri, Blue Lagoon, Doggy Style, Good Place) | ✅ Done |
+| 19 | Serverless API functions synced to NZD pricing | ✅ Done |
+| 20 | Blog with 3 SEO articles (business needs, conversion, build speed) | ✅ Done |
+| 21 | Cold outreach automation endpoint (/api/start-outreach) | ✅ Done |
+| 22 | All email templates cleaned — zero call/phone references | ✅ Done |
+| 23 | Google Search Console verified + sitemap submitted | ✅ Done |
+| 24 | Claude API website builder from client brief | Planned |
+| 21 | Auto client preview via Vercel deploy | Planned |
+| 22 | Project tracking dashboard via Supabase | Planned |
+| 23 | Auto invoicing on milestone completion | Planned |
+| 24 | PayPal as secondary checkout option | Planned |
 
 ---
 
-### Division 2 — [Future Division]
-*(Add new business lines here as the empire grows — e.g. social media management, SEO, branding, e-commerce, SaaS products)*
+### Division 2 — Trading / Investments
+**Brand:** Midas Gold Sniper
+**Tagline:** "Midas Touch. Every Trade."
+**Instrument:** XAU/USD (Gold) exclusively
+**Status:** v5.8 live 24/7 on DigitalOcean VPS (146.190.209.99). Migrated from IG Markets → CMC Markets MT4 via MetaAPI on April 22, 2026. Awaiting $100 NZD initial funding.
+**Platform:** CMC Markets MT4 · MetaAPI Cloud bridge (region: london) · symbol `GOLD.p`
+**Live strategies (4):** Silver Bullet Scalp · NY Killzone Scalp · Asian Range Sweep v5.7 · Order Block Sweep v5.8 (OB4)
+**Small-account wrapper:** flat 0.01 lot + $3 SL cap while balance <$500, then auto-graduates to 1%-risk sizing
+**Backtested edge (12mo Dukascopy, realistic costs, $100 start, progressive sizing):** +$7.6k / 156 trades / 67.9% WR / DD 4.7%. Walk-forward PASSED.
+**Realistic live target:** $100 → $500 in 4–6 months (execution haircut 50–70% of backtest)
+**Monthly cost:** ~$6 DO VPS + ~$0.07/day MetaAPI = ~$8/mo
+**Next step:** Fund $100 NZD to CMC, bot auto-starts. Plan: $50–100/wk top-ups from Apr 27.
+
+---
+
+### Other Brands (under The Victory Co. Limited)
+- **LAB Prints** (lab-prints.vercel.app / labprints.co.nz) — print/merch ecom on Shopify. Redesigned Apr 20 2026, dark theme, Space Grotesk typography.
+- **CLIPD** (Cut Red #FF3A3A) — AI clipping agency, "Go viral. Get paid." Content Rewards + Vyro stack.
+- **The Profit Lab** — PDF digital products, live at Vercel + Gumroad with Brevo automation.
+- **Aria Santos** (aria-santos.vercel.app) — AI influencer (Miami fitness/lifestyle), website v2 with Stripe checkout + digital products.
+- **Punefu Junior 21st** — event division, digital + print invite, RSVP system built.
 
 ---
 
@@ -182,11 +218,9 @@ All output from you and your agents must match this tone:
 
 ## Active Client Roster
 
-*No active clients yet.*
-
 | Client | Division | Project | Status | Due |
 |---|---|---|---|---|
-| — | — | — | — | — |
+| LAB Prints (Victory's own) | Division 1 — Onyxarro | Shopify theme + static site | In progress — GitHub repo live, connecting to Shopify | ASAP |
 
 *(Update this table as clients are added)*
 
@@ -196,7 +230,22 @@ All output from you and your agents must match this tone:
 
 | Project | Division | Description | Status | Target Date |
 |---|---|---|---|---|
-| Onyxarro Website | Division 1 — Onyxarro | Agency website | Live at onyxarro.com | ✅ Complete |
+| Onyxarro Website | Division 1 — Onyxarro | Agency website (multi-page) | ✅ Live at onyxarro.com | Complete |
+| Onyxarro Email Automation | Division 1 — Onyxarro | Stripe webhook + Brevo email flow | ✅ Fully automated | Complete |
+| Onyxarro Phase 1 — Lead Funnel | Division 1 — Onyxarro | /audit page + API + Brevo list 11 + report generator | ✅ Live (Apr 21) | Complete |
+| Onyxarro Phase 2 — UGC AI Ads | Division 1 — Onyxarro | Arcads UGC on Meta + TikTok, 80 hooks / 4 angles, routes to /audit | 🔄 Batch 1 (10 scripts) ready | In progress |
+| Onyxarro Phase 3 — Niche Landers | Division 1 — Onyxarro | Tradies/dentists/lawyers/accountants audit landers | ✅ All 4 deployed (Apr 21) | Complete |
+| Onyxarro Phase 4 — Pattern Library | Division 1 — Onyxarro | 13 internal-only section patterns at brand_assets/layout-patterns/ | ✅ Shipped (Apr 22) | Complete |
+| Onyxarro Phase 5 — Creator Partnerships | Division 1 — Onyxarro | 5-file system, target 5 partnerships / 60 days, CAC <$1,200 | ✅ System built (Apr 21) | In progress |
+| Niche Cold Email System | Division 1 — Onyxarro | Templates 42–56 per niche, Brevo 3-day cap fix, prospects-master.csv | ✅ Live (Apr 22) | Complete |
+| Onyxarro Homepage Redesign | Division 1 — Onyxarro | Agency-dark pattern, numbered case rows + bento why, nav fix | ✅ Live (Apr 22, commit 76f2705) | Complete |
+| Onyxarro Backlink Building | Division 1 — Onyxarro | GBP done, phone locked, Instagram wired, on-page SEO clean | 🔄 Phase 1 live; next: Bing Places + LinkedIn | In progress |
+| LAB Prints | Other brands | Shopify store + marketing site | ✅ Redesigned (Apr 20), live at lab-prints.vercel.app | Complete |
+| Aria Santos AI Influencer | Other brands | Website v2 + Stripe checkout + digital products | ✅ Live at aria-santos.vercel.app | Complete |
+| The Profit Lab | Other brands | PDF digital products, Gumroad + Vercel + Brevo automation | ✅ Live; next: push free.html + 14-day posting calendar | In progress |
+| Command Centre | Internal | Teddy AI dashboard (victory-co-command-centre.vercel.app) | ✅ Fully complete | Complete |
+| Midas Gold Sniper | Division 2 — Trading | v5.8 bot on VPS, CMC MT4 via MetaAPI, smoke-tested | 🔄 Awaiting $100 NZD CMC deposit | Apr 27 (week of) |
+| MSD Start-Up Grant | Admin | $10K NZD SESP for Onyxarro — business plan + supplier quotes drafted | 🔄 Next: call 0800 559 009 to book interview | ASAP |
 
 *(Update this table as internal projects are initiated)*
 
@@ -303,8 +352,43 @@ All output from you and your agents must match this tone:
 | April 2026 | Division 1 confirmed — Onyxarro web design agency. |
 | April 2026 | Onyxarro website launched live at onyxarro.com. Stripe, multi-currency, contact form all live. |
 | April 2026 | Full site redesign — new packages (Launch/Growth/Authority), NZD pricing, new sections (Value Prop, Why Us, Testimonials, Final CTA). Checkout and server updated to match. |
+| April 17, 2026 | Full site audit completed. OG image (1200×630) created and live. Twitter/X card meta tags added. SVG favicon deployed across all pages. Stripe confirmed live on Vercel. Site 100% operational. |
+| April 17, 2026 | Outreach sequences built — cold email (3-email sequence), LinkedIn DM (3-step), Instagram DM (3-step), tracking template. Saved to `Onyxarro Agency/Outreach/`. |
+| April 17, 2026 | 30-day Instagram + LinkedIn content calendar built — 5 content pillars, full Week 1 written out, Weeks 2–6 planned. Caption formula + hashtag bank included. Saved to `Onyxarro Agency/Social Media/`. |
+| April 17, 2026 | Firecrawl MCP connected to Claude Code — API key live. Enables prospect scraping, competitor analysis, and automated pitch intelligence workflow. |
+| April 17, 2026 | First two prospect demos built: Baywide Plumbing (navy/orange) + Cafe Ahuriri (Art Deco, espresso/copper). Cafe Ahuriri package includes full competitive analysis report — 7 issues identified, competitor comparison table vs Soho Cafe + Adoro Cafe, before/after, revenue opportunities. Pitch-ready. |
+| April 17, 2026 | Email infrastructure fully live. Zoho Mail (hello@onyxarro.com) + Brevo automation platform set up. All DNS records added to Vercel (MX, SPF, DKIM ×2, DMARC, verification). 8 branded email templates created in Brevo (cold outreach ×3, demo sent ×3, enquiry reply, onboarding welcome). |
+| April 17, 2026 | Cafe Ahuriri full pitch package complete. Demo (editorial layout, real photos, full menu) + competitive report (Onyxarro branded, 8 issues, local vs international benchmarks, revenue opportunities). Live at cafe-ahuriri.vercel.app. Ready to send. |
+| April 17, 2026 | Demo outreach workflow established. Target: 10–20 demos/day. Full pipeline: Firecrawl prospect → scrape real photos → build niche-specific demo → build Onyxarro-branded report → deploy to Vercel → Brevo sequence fires. Upgrading to Max plan. |
+| April 17, 2026 | All 8 Brevo email templates fully rebranded — exact match to onyxarro.com. Dark #060b14 theme, ONYX/ARRO logo, teal-violet gradient line, highlight boxes, CTA buttons, branded signature. Templates personalised per lead via {{contact.FIRSTNAME}}, {{contact.COMPANY}}, {{contact.DEMO_LINK}}, {{contact.REPORT_LINK}}. Pitch-ready. |
+| April 18, 2026 | 3 new prospect demos built + deployed: Blue Lagoon Tattoo (dark art gallery, real photos, blue-lagoon-tattoo.vercel.app), Doggy Style Grooming (bright/playful, sage green, doggy-style-grooming.vercel.app), The Good Place Café & Bar (bold community, terracotta+green, the-good-place-six.vercel.app). Each with Onyxarro-branded competitive report. All targeting businesses with NO website. |
+| April 18, 2026 | Onyxarro.com restructured to multi-page: homepage (lean conversion machine with stats bar, FAQ, schema markup), services.html (full pricing + comparison table + care plans), work.html (portfolio + industry categories), about.html (process + differentiators), templates.html (demo gallery with filters). Competitive analysis against 48hrwebdesign.com, Single Grain, Lounge Lizard applied. |
+| April 18, 2026 | Trust pages added: Terms & Conditions, Privacy Policy (NZ Privacy Act 2020 + GDPR), Refund Policy. Footer updated with The Victory Co. Limited copyright + legal links. |
+| April 18, 2026 | Full email automation pipeline live. Stripe webhook (api/webhook.js) fires on payment → Brevo sends branded order confirmation with onboarding link → customer added to Clients list → team notified at hello@onyxarro.com. Onboarding form submission triggers "Brief Received" email automatically. 5 post-payment templates created (IDs 18–22). Cold outreach templates updated for no-website leads (3-email sequence, signed as "The Onyxarro Team"). |
+| April 18, 2026 | Vercel serverless functions fixed — api/create-payment-intent.js and api/create-subscription-intent.js synced to current plan names (launch/growth/authority) and NZD currency. Stripe webhook registered. BREVO_API_KEY + STRIPE_WEBHOOK_SECRET added to Vercel env vars. |
+| April 18, 2026 | Checkout form data now captured in Formspree alongside Stripe metadata. All customer answers visible at formspree.io/forms/mzdydrza/submissions. Checkout tested end-to-end — Stripe payment, confirmation email, team notification all confirmed working. |
+| April 18, 2026 | Blog launched with 3 SEO articles: "Does My Business Need a Website?", "What Makes a Website Convert?", "How Long Should a Website Take to Build?". All with Article schema markup, keyword targeting, internal links. Blog added to nav + sitemap. |
+| April 18, 2026 | Cold outreach automation endpoint live at /api/start-outreach. Single API call triggers full 3-email sequence: Email #1 immediately, #2 at +4 days, #3 at +8 days. Adds prospect to Brevo, notifies team. |
+| April 18, 2026 | All email templates audited and cleaned — zero call/phone/meeting references. Templates 11, 13, 15, 16 updated. All CTAs now "reply to this email" only. Signed as "The Onyxarro Team". |
+| April 18, 2026 | Google Search Console verified for onyxarro.com. Sitemap submitted with all 13 pages + 3 blog articles. robots.txt deployed. Google indexing requested. |
+| April 18, 2026 | Google Analytics (G-609LC3D8D1) added to all 15 pages. Real-time visitor tracking live. |
+| April 18, 2026 | Abandoned cart recovery system built. api/abandoned-cart.js schedules Brevo recovery email (#23) 1 hour after checkout drop-off. Team notified immediately. |
+| April 20, 2026 | LAB Prints website redesigned — dark theme, Space Grotesk typography, product cards with pricing, FAQ accordion. Live at lab-prints.vercel.app. |
+| April 20, 2026 | Midas Gold Sniper deployed to DigitalOcean VPS (146.190.209.99). Telegram commander bot live. IPRoyal residential proxy ($7/1GB non-expiring) purchased for IG datacenter-IP block. |
+| April 21, 2026 | Onyxarro Phase 1 (Lead Funnel) LIVE — /audit page + API + Brevo list 11 + templates 39/40/41 + report generator + playbook. |
+| April 21, 2026 | Onyxarro Phase 2 (UGC AI Ads) build started — Arcads UGC ads targeting Meta + TikTok, 80 hooks across 4 angles, Batch 1 ready. |
+| April 21, 2026 | Onyxarro Phase 3 (Niche Landing Pages) LIVE — all 4 niche audit landers (tradies/dentists/lawyers/accountants) deployed, sitemap + ad CTAs updated. Commit 7b847d2. |
+| April 21, 2026 | Onyxarro Phase 5 (Creator Partnerships) system built — 5 files (README, outreach templates, partnership structure, content collaboration, ROI tracking). Target: 5 partnerships / 60 days / $0 cash / CAC <$1,200. |
+| April 21, 2026 | Midas v5.6 → v5.7 → v5.8 tuning sprint. OB4 12mo Dukascopy retune (skip Wed + rr_floor 3.0). Asian Stage-4 params (min_entry_hour=5, skip Thu) — solo 6mo 75% WR / PF 10.13 / +30.5%. All walk-forward validated. |
+| April 21, 2026 | Orthogonal strategy research — 3/3 candidates (DXY Correlation · VWAP Sigma Fade · Risk-Off Flight-to-Gold) failed walk-forward. Regime conclusion: post-2023 gold favors trend-continuation (ICT), not statistical reflex. Research killed for mean-reversion candidates. |
+| April 22, 2026 | Onyxarro Phase 4 (Layout Pattern Library) shipped — 13 internal-only section patterns at brand_assets/layout-patterns/. Repo flipped PRIVATE. .vercelignore blocks public access. Commits 191d502 + 3250754. |
+| April 22, 2026 | Niche cold email system deployed — templates 42–56 per niche with NZ-specific stats, demo-build checklist, prospects-master.csv. Brevo 3-day scheduledAt cap bug fixed. |
+| April 22, 2026 | Onyxarro homepage redesigned — agency-dark Dribbble patterns (numbered case rows + bento why section), nav consistency fix across templates/work pages. Commit 76f2705. |
+| April 22, 2026 | Outreach day — 6 cold fires (Downie Stewart, Blue Lagoon, Dressmaker, Iconic Hair Wanaka, Ti Rakau, Askew). 6 demos archived unverified. 2 fresh demos built under new accuracy workflow. 14 in-flight total. Day 8 = Apr 26. |
+| April 22, 2026 | Midas migrated IG → CMC Markets MT4 via MetaAPI (commit 13d0aab). MetaAPI account DEPLOYED + CONNECTED, region=london, GOLD.p spread $0.20 (tighter than IG's $0.30). Small-account wrapper tightened to $3 SL cap for NZD account. Bot auth'd + streaming, awaiting $100 NZD CMC deposit. |
+| April 22, 2026 | Master agent + Command Centre dashboard synced to v3.1 — Trading division (Midas) formally added, all April 19–22 milestones logged, Active Projects table expanded to 17 entries across 2 divisions + other brands. |
 
 ---
 
-*The Victory Co. Limited — Master Commander Agent v2.4*  
+*The Victory Co. Limited — Master Commander Agent v3.1*  
 *Built to scale. Update this document as the empire grows.*
